@@ -6,14 +6,14 @@
 
 
 ### Utilité d'un script ?
-* Evite les taches d'administration répétitives et fastidieuses. (Par ex : création de comptes)
-* Améliore la qualités des données du SI en évitant la double saisie d'informations.
+* Évite les tâches d'administration répétitives et fastidieuses. (Par ex. : création de comptes)
+* Améliore la qualité des données du SI en évitant la double saisie d'informations.
 * Standardisation des procédures.
 
 
 ### Un peu d'histoire
 
-* Chez Microsoft, DOS v1.0 arrivera en 1981 et permettra d'executer des scripts Batch.
+* Chez Microsoft, DOS v1.0 arrivera en 1981 et permettra d'exécuter des scripts Batch.
 * En 1987, PERL (Practical Extraction and Report Language) est développé pour faciliter la manipulation de fichiers et de données. Ne sera disponible sous Windows qu'en 1997. (NT4.0)
 * Javascript arrive avec Netscape et Jscript avec Internet Explorer 3.0.
 * Le kit de ressource Microsoft Technique permet d'utiliser PERL et Kickstart avec NT4.0
@@ -30,6 +30,7 @@ Le projet Monad puis PowerShell v1 arrive en 2006.
 * En 2016, sortie de Powershell v5.1
 * En 2018, sortie de PowerShell Core 6.0 (Linux et OSX)
 * En 2020, sortie de PowerShell 7 (version LTS)
+* Fin 2023, dernière version LTS - Powershell V7.4
 
 
 
@@ -38,70 +39,85 @@ Le projet Monad puis PowerShell v1 arrive en 2006.
 
 ### Présentation de Powershell
 
-* Powershell est un interpréteur de commandes comme "CMD.EXE" et un shell Linux (sh, bash...)
-* Il s'appuie sur le framework .NET, et permet, d'utiliser des objets.
-* PS v2.0 ==> 260 commandes, v3.0 ==> 350 commandes
-* Noms des commandes faciles à mémorisées, car toujours basés sur le même modèle.
+* Powershell est un interpréteur de commandes tel que "CMD.EXE" ou un shell Linux (sh, bash...)
+* Il s'appuie sur le framework .NET, et permet d'utiliser des objets.
+* PS v2.0 ==> 260 commandes, v3.0 ==> 350 commandes, 
+* Noms des commandes faciles à mémoriser, car toujours basés sur le même modèle.
 * Aide en ligne intégrée à la console très détaillée.
 
 > Le framework .NET, est un ensemble de composants constitué d'un moteur d'exécution et d'une bibliothèque de classes à partir desquelles nous pouvons instancier des objets. 
-
-
-### Prérequis Powershell v2.0
+<!---### Prérequis Powershell v2.0
 
 * Windows 7 / Windows Server 2008 R2 : PowerShell 2.0 est prêt à l'emploi
 * Windows Vista SP1 minimum : Binaires PowerShell x86 ou x64
 * Windows Server 2008 : Binaires PowerShell x86 ou x64
 * Windows Server 2003 SP2 ou 2003 R2 : Binaires PowerShell x86 ou x64 + Framework .NET 2.0 SP1 (minimum)
 * Windows XP SP3 : Binaires PowerShell x86 + Framework .NET 2.0 SP1 (minimum)
-* Windows 2000 : Non disponible
+* Windows 2000 : Non disponible-->
 
 
-### Prérequis Powershell v3.0
+### Prérequis Windows Powershell 5.1
 
-* Windows 8 / Windows Server 2012 : PowerShell v3.0 est prêt à l'emploi
-* Windows 7 SP1 / Windows Server 2008 SP2 / 2008 R2 SP1 : installation de Windows Management Framework 3.0
+* Natif sur Windows Server 2016 et Windows 10/11
+* Pour les anciens systèmes : installation de Windows Management Framework (WMF) 5.1 :
+  * OS clients : Windows 7 SP1 et Windows 8
+  * OS serveurs : Windows Server 2008 R2 SP1 et Windows Server 2012 et R2
 
-> **Windows Management Framework 3.0 :**  
-Contient un ensemble de programmes : PowerShell 3.0, WMI, WinRM, Management OData IIS Extension, and Server Manager CIM Provider  
-Disponible en version 32/64 bits à cette adresse : http://www.microsoft.com/en-us/download/details.aspx?id=34595 
+* Windows Management Framework (WMF) 5.1 :
+  * Contient un ensemble de programmes : PowerShell 5.1, WMI, WinRM, Windows PowerShell Desired State Configuration.  
+  * Disponible à cette adresse : [Windows Management Framework (WMF) 5.1](https://www.microsoft.com/en-us/download/details.aspx?id=54616)
+
+
+### Prérequis Powershell 7 
+
+* Compatible à partir de Windows 10 et Windows Server 2016
 
 
 ### Généralités Powershell
 
-* Le fichier exécutable Powershell.exe est installé dans le répertoire suivant :       
-> `C:\Windows\System32\WindowsPowerShell\v1.0`
-* L'éditeur Powershell ISE et la commande Out-GridViewnécessite le Framework .NET 3.0.
-* La commande Get-Event ne fonctionne pas sous Windows XP et nécessite le Framework 3.5.
+* Les fichiers exécutables **powershell.exe** et **pwsh.exe** sonts installés dans le répertoire suivant :
+
+  * `C:\Windows\System32\WindowsPowerShell\v1.0 (Windows Powershell)`
+  * `C:\Program Files\PowerShell\7 (Powershell 7)`
+
 * WinRM et WSMan sont nécessaires pour l'exécution de scripts à distance et en arrière plan.
 
 
 ### Quelques éditeurs avec colorations syntaxiques
 
-* L'éditeur ISE (Integrated Scripting Environment) est disponible dans Windows 2008 R2/7/8/10 . Il propose en autre ces fonctionnalités :
-    * Edition multiligne
-    * Excution sélective
-    * Aide contextuel
-    * Console d'exécution
-    * Powershell ISE v3
-        * Panneau de commandes avec filtre
-        * Auto-Complétion
-        * Affichage des erreurs de syntaxe
+#### ISE - Integrated Scripting Environment
 
-* L'éditeur PowerGUI est une autre alternative. Il propose ces fonctionnalités :
-    * IntelliSence
-    * Structure de code prédéfinie
-    * Add-ons
-    * et bien d'autres...
+* L'éditeur **ISE** est disponible dans Windows 2008 R2/7/8/10/11. Il propose entre autres ces fonctionnalités :
+  * Édition multiligne
+  * Exécution sélective
+  * Aide contextuel
+  * Console d'exécution (Windows Powershell)
+  * Panneau de commandes avec filtre
+  * Auto-Complétion
+  * Affichage des erreurs de syntaxe
+  
+
+
+#### VSCODE - Integrated Scripting Environment
+
+* L'éditeur **VSCODE** est utilisable avec MacOSX, Linux et Windows.
+  * Intégration de la console PowerShell (Windows Powershell et Powershell 7)
+  * Extension PowerShell (autocomplétion, coloration syntaxique et le débogage)
+  * Débogage avancé (points d'arrêt, inspection des variables et suivi de  l'exécution des scripts pas à pas)
+  * Gestion par dossier/projet (explorateur intégré)
+  * Suivi des modification (intégration de GIT via une extension)
 
 
 ### Commandes pour débuter
 
 Les commandes (cmdlets) natives de PowerShell sont constituées d'un verbe + un nom.
 Bien que les noms des commandes soient plus longs, elles sont plus facilement mémorisables.
-    	
+
+* Exemples de verbe : Get, New, Set, Clear, Import, Set, Write ...
+* Exemple de noms : Content, Item, Host, ChildItem ... 
+
 ```powershell
-    # Obtenir toute la liste des commandes natives ou installées
+    # Obtenir toute la liste des commandes natives ou installées via modules
     Get-Command -CommandType cmdlet
     # Nombre de commandes Powershell :
     Get-Command -CommandType cmdlet | Measure-Object
@@ -1342,8 +1358,8 @@ Switch ($Nombre)
 
 ### LES FONCTIONS
 
-* Une fonction corresponds à un ensemble d'instructions.
-* Permet de gagner du temps en utilisant à nouveau le code déjà créé.
+* Une fonction correspond à un ensemble d'instructions.
+* Permets de gagner du temps en utilisant à nouveau le code déjà créé.
 * Participe à la qualité et à la clarté du code.
 * Une fonction est constituée des éléments suivants :
     * un nom
@@ -1530,7 +1546,7 @@ notepad $profile
 
 #### PERSONNALISATION DU FORMATAGE DE L'AFFICHAGE
 
-* Par défaut le retour d'une cmdlet est dirigée vers la commande Out-Default.
+* Par défaut le retour d'une cmdlet est dirigé vers la commande Out-Default.
 * Cette commande gère l'affichage et le formatage des flux d'objets.
 * Si le flux d'objets est de type texte, il est redirigé vers Out-Host, dans le cas contraire, Powershell cherchera une vue prédéfinie par rapport au type d'objet retourné.
 * Par exemple, les commandes suivantes renvoient le même résultat :
@@ -1546,14 +1562,14 @@ Get-ChildItem | Format-Table | Out-String | Out-Default
 
 * Les vues prédéfinies sont stockées dans des fichiers sous la forme *.format.ps1xml.
 * Ces fichiers sont dans le répertoire $PSHOME.
-* Ils n'est pas conseillé de les modifier directement car ces fichiers sont signés numériquement.
+* Il n'est pas conseillé de les modifier directement, car ces fichiers sont signés numériquement.
 
 
 
 ## GESTION DES FICHIERS
 
 
-### ECRIRE DANS UN FICHIER
+### ÉCRIRE DANS UN FICHIER
 
 * Pour écrire dans un fichier, il existe deux commandes :  
 Set-Content et Out-File
@@ -1616,7 +1632,7 @@ C:\scripts\CESI> Get-Content .\file.txt -Encoding byte
 <ecole nom="ENSAN" lieu="Rouen">...</ecole>
 ```
 
-* Un couple de tags désigne un noeud
+* Un couple de tags désigne un nœud
 
 
 * Exemple complet :
@@ -1745,12 +1761,12 @@ Darnétal
 #Chargement du fichier XML
 $xmldata = [xml](Get-Content administratifs.xml)
  
-#Création d'un noeud
+#Création d'un nœud
 $newadministratif = $xmldata.CreateElement("administratif")
 $newadministratif.set_InnerXML('
     "<nom>Paul Atréides</nom><fonction>Consultant</fonction>")
  
-# Ecriture du noeud
+# Ecriture du nœud
 $xmldata.ecole.AppendChild($newadministratif)
  
 # Vérification du résultat
