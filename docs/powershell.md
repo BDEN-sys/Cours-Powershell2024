@@ -760,26 +760,26 @@ True True String System.Object
 * Lister toutes les variables :
 
 ```powershell
-    Get-ChildItem variable:
+Get-ChildItem variable:
         
-    Name                           Value
-    ----                           -----
-    $                              }
-    ?                              True
-    ^                              measure-command
-    args                           {}
-    ConfirmPreference              High
-    ConsoleFileName
-    DebugPreference                SilentlyContinue
-    Error                          {Données non valides, Données non valides, Données non valide...
-    ErrorActionPreference          Continue
-    ErrorView                      NormalView
-    ExecutionContext               System.Management.Automation.EngineIntrinsics
-    false                          False
-    FormatEnumerationLimit         4
-    HOME                           C:\Users\Baptiste
-    Host                           System.Management.Automation.Internal.Host.InternalHost
-                            ...
+Name                    Value
+----                    -----
+$                       }
+?                       True
+^                       measure-command
+args                    {}
+ConfirmPreference       High
+ConsoleFileName
+DebugPreference         SilentlyContinue
+Error                   {Données non valides, Données non valides, Données non valide...
+ErrorActionPreference   Continue
+ErrorView               NormalView
+ExecutionContext        System.Management.Automation.EngineIntrinsics
+false                   False
+FormatEnumerationLimit  4
+HOME                    C:\Users\Baptiste
+Host                    System.Management.Automation.Internal.Host.InternalHost
+                   ...
 ```
 
 
@@ -787,20 +787,20 @@ True True String System.Object
 
 * Exemple de tableau à une dimension :
 
-|Indice :[0]	| Indice :[1]	|Indice :[2]|
+|Indice :[0]    | Indice :[1]   |Indice :[2]|
 |---------------|---------------|-----------|
-|Valeur :16	    | Valeur :10	|Valeur :12 |
+|Valeur :16     | Valeur :10    |Valeur :12 |
 
-* Initialiser, puis lire un tableau 
+* Initialiser, puis lire un tableau
 
 ```powershell
-#Initialisation tableau       #Initialisation avec opérateur de plage (..)
-$tab = 16,10,12               $tab = 1..15
-$tab[0]                       $tab
-16                            1
-$tab[0,2]                     2
-16                            ..
-12                            15
+#Initialisation tableau  #Initialisation avec opérateur de plage (..)
+$tab = 16,10,12          $tab = 1..15
+$tab[0]                  $tab
+16                       1
+$tab[0,2]                2
+16                       ..
+12                       15
 ```
 
 * Lire le dernier indice d'un tableau :
