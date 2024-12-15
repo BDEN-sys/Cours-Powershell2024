@@ -31,7 +31,7 @@
 
     --math-align: left;
 
-    --smaller-font-size: 2.6rem;
+    --smaller-font-size: 2.2rem; /* BD was 2.6rem*/
 
     --a-color: var(--wikipedia-a-color);
     --inline-code-bg-color: var(--wikipedia-code-bg-color);
@@ -50,7 +50,7 @@ body {
     background-repeat: no-repeat;
     font-family: var(--hogent-font-family);
     font-weight: 400;
-    font-size: 2.5rem; /* BD was 3.2rem*/
+    font-size: 2.8rem; /* BD was 3.2rem*/
 }
 
 section {
