@@ -1,10 +1,10 @@
 index:
   title: HOGENT - Slides
-  favicon: https://hogenttin.github.io/cdn/favicon/favicon.ico
-  theme: https://hogenttin.github.io/cdn/styles/reveal-js/index.css
+  favicon: ico/favicon.ico
+  theme: css/index.css
 slides:
-  favicon: https://hogenttin.github.io/cdn/favicon/favicon.ico
-  theme: https://hogenttin.github.io/cdn/styles/reveal-js/slides.css
+  favicon: ico/favicon.ico
+  theme: css/slides.css
   highlight_theme: vs
   separator: "^\n\n\n"
   separator_vertical: "^\n\n"
@@ -13,9 +13,3 @@ revealjs:
   height: 1080
   width: 1920
   transition: fade
-plugins:
-  - name: RevealMermaid
-    extra_javascript:
-      - https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.min.js
-  - extra_css:
-      - ./bandeaubas.css
