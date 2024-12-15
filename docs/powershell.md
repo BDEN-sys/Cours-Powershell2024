@@ -75,7 +75,7 @@ Le projet Monad puis PowerShell v1 arrive en 2006.
 
 ### Généralités Powershell
 
-* Les fichiers exécutables **powershell.exe** et **pwsh.exe** sonts installés dans le répertoire suivant :
+* Les fichiers exécutables **powershell.exe** et **pwsh.exe** sonts installés dans les répertoires suivants :
 
   * `C:\Windows\System32\WindowsPowerShell\v1.0 (Windows Powershell)`
   * `C:\Program Files\PowerShell\7 (Powershell 7)`
@@ -940,22 +940,21 @@ $int1 + $int2     $str1 + $str2            AAAAAAAAAA
 |Opérateur|Signification        |
 |---------|---------------------|
 |-eq      |Egal                 |
-|-ne	  |Non égal             |
+|-ne      |Non égal             |
 |-gt      |Strictement supérieur|
-|-ge	  |Supérieur ou égal    |
-|-lt	  |Strictement inférieur|
-|-le	  |Inférieur ou égal    |
+|-ge      |Supérieur ou égal    |
+|-lt      |Strictement inférieur|
+|-le      |Inférieur ou égal    |
 
 > **Respect de la casse**  
 Les opérateurs ne respectent pas la casse par défaut, pour modifier ce comportement, ajouter "c" avant l'opérateur tel que **-ceq** par exemple.
 
 
-* Les opérateurs de comparaison générique : 
-  
+* Les opérateurs de comparaison générique :
 
-|Opérateur|Signification                                 |
+|Opérateur|Signification |
 |---------|----------------------------------------------|
-|-like	  |Comparaison d'égalité d'expression générique  |
+|-like    |Comparaison d'égalité d'expression générique  |
 |-notlike |Comparaison d'inégalité d'expression générique|
 
 * Exemples d'utilisation :
@@ -978,14 +977,12 @@ False
 ```
 
 
-* Les opérateurs de comparaison des expressions régulières :  <br/><br/>
+* Les opérateurs de comparaison des expressions régulières :  
 
-|Opérateur  |Signification                                 |
+|Opérateur  |Signification  |
 |---------  |----------------------------------------------|
 |-match     |Comparaison d'égalité entre une expression et une expression régulière|
 |-notmatch  |Comparaison d'inégalité entre une expression et une expression régulière|
-
- <br/>
 
 * Exemples d'utilisation :
 
@@ -1022,7 +1019,7 @@ $var1 .. $var2
 PowerCoquillage
 ```
 
-Les chaînes de caractères (string) possèdent une méthode appelée Replace qui effectue la même chose :
+Les chaînes de caractères (string) possèdent une méthode appelée **Replace()** qui effectue la même opération :
 ```powershell
 $chaine = 'PowerShell' 'Coquillage'
 $chaine.Replace('Shell','Coquillage')
@@ -1031,14 +1028,11 @@ PowerCoquillage
 
 
 * Les opérateurs de type :
-<br/><br/>
 
-|Opérateur  |Signification                                 |
+|Opérateur  |Signification       |
 |---------  |----------------------------------------------|
-|-is	    |Test si l'objet est du même type.  |
-|-isnot	    |Test si l'objet n'est pas du même type.|
-
-<br/>
+|-is        |Test si l'objet est du même type.  |
+|-isnot     |Test si l'objet n'est pas du même type.|
 
 * Exemples d'utilisation :
 
@@ -1053,17 +1047,14 @@ False
 
 
 * Les opérateurs logiques :
-<br/><br/>
 
-|Opérateur  |Signification                                 |
+|Opérateur  |Signification           |
 |---------  |----------------------------------------------|
 |-and	    |Et logique |
 |-or	    |Ou logique |
 |-not	    |Non logique |
 |!	        | Non logique |
 |-xor	    |Ou exclusif|
-
-<br/>
 
 * Exemples d'utilisation :
 
@@ -1080,18 +1071,16 @@ True
 
 
 * Les opérateurs d'affectation :
-<br/><br/>
 
 |Notation  classique|Notation raccourcie|
 |---------  |---------------------------|
-|$i=$i+8	|$i+=8|
+|$i=$i+8    |$i+=8|
 |$i=$i-8	|$i-=8|
 |$i=$i*8	|$i*=8|
 |$i=$i/8	|$i/=8|
 |$i=$i%8	|$i%=8|
 |$i=$i+1	|$i++|
 |$i=$i-1	|$i–|
-<br/>
 
 * Exemple d'utilisation :
 
@@ -1104,11 +1093,10 @@ $i
 
 
 * Les opérateurs de redirection :
-<br/><br/>
 
-|Opérateur  |Signification                                 |
-|---------  |----------------------------------------------|	
-|>	        |Redirige le flux vers un fichier, si il existe, il est remplacé.|	
+|Opérateur  |Signification         |
+|---------  |---------|
+|>          |Redirige le flux vers un fichier, si il existe, il est remplacé.|	
 |>>	        |Redirige le flux vers un fichier, si il existe, le flux est ajouté à la fin du fichier.|
 |2>&1	    |Redirige les messages d'erreurs vers la standard.|
 |2>	        |Redirige les messages d'erreurs vers un fichier, si il existe, il est remplacé.|
@@ -1125,23 +1113,24 @@ Get-Childitem c:\RepInexistant 2> error.txt
 
 * Les opérateurs de fractionnement et de concaténation :
 
-|Opérateur  |Signification                                 |
-|---------  |----------------------------------------------|		
+|Opérateur  |Signification         |
+|---------  |----------------------------------------------|
 |-split	    |Fractionne une chaine en sous-chaine.         |
 |-join	    |Concactène plusieurs chaines en une seule.    |
 
 * Exemple de fractionnement :
 
 ```powershell
--split "Ecole d'Architecture Rouen"
-Ecole
-d'Architecture
+-split "Université de Rouen"
+Université
+de
 Rouen
 'Nom:Prenom:Adresse' -split ':'
 Nom
 Prenom
 Adresse
 ```
+
 
 * Exemple de concaténation :
 
@@ -1302,7 +1291,7 @@ Fin de la liste des services
 
 * La syntaxe d'une structure conditionnelle est la suivante :
 
-<pre><code>
+```
 If (condition)
 {
     bloc d'instruction
@@ -1362,13 +1351,13 @@ Switch ($Nombre)
 * Permets de gagner du temps en utilisant à nouveau le code déjà créé.
 * Participe à la qualité et à la clarté du code.
 * Une fonction est constituée des éléments suivants :
-    * un nom
-    * un type de portée (facultatif)
-    * un ou plusieurs arguments (facultatifs)
-    * un bloc d'instruction
+  * un nom
+  * un type de portée (facultatif)
+  * un ou plusieurs arguments (facultatifs)
+  * un bloc d'instruction
 * Syntaxe d'une fonction :
 
-<pre><code>
+```
 Function [&lt;portée> :] &lt;nom de fonction> (&lt;arguments>)
 {
     param (&lt;liste de paramètres>)
@@ -1449,10 +1438,10 @@ moyenne -nombre1 12 -nombre2 18
 
 * Fonctions équivalentes aux commandlets
 * Ajoutent les fonctionnalités suivantes :
-    * Paramètres positionnels
-    * Paramètres obligatoires
-    * Message d'aide sur paramètre
-    * et bien plus avec l'attribut cmdletBinding
+  * Paramètres positionnels
+  * Paramètres obligatoires
+  * Message d'aide sur paramètre
+  * et bien plus avec l'attribut cmdletBinding
 * Exemple de fonction avancée :
 
 ```powershell
@@ -1469,7 +1458,7 @@ Function MoveFile
 ```
 
 
-* Exemple d'utilisation des paramètres obligatoires et de l'aide:
+* Exemple d'utilisation des paramètres obligatoires et de l'aide :
 
 ```powershell
 . .\MoveFile #Import de la fonction (Dotsourcing)
@@ -1495,13 +1484,16 @@ La combinaison de touche !? permet d'obtenir l'aide déclarée au niveau du para
 
 * Personnaliser son environnement grâce aux profils.
 * Il existe deux types de profils :
-    * Les profils utilisateurs - personnalisent l'environnement de l'utilisateur courant.
-    * Les profils machines - s'appliquent à tous les utilisateurs de la machine.
+  * Les profils utilisateurs - personnalisent l'environnement de l'utilisateur courant.
+  * Les profils machines - s'appliquent à tous les utilisateurs de la machine.
+
 * Les profils utilisateurs sont au nombre de deux :
+
 ```powershell
 %UserProfile%\Mes Documents\WindowsPowerShell\profile.ps1
 %UserProfile%\Mes Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 ```
+
 * Le premier profil s'applique à tous les environnements utilisateurs, y compris les consoles telle que la console Exchange.
 * Le dernier profil s'applique à l'environnement installé par défaut : 'Microsoft.PowerShell'.
 
@@ -1519,6 +1511,7 @@ La combinaison de touche !? permet d'obtenir l'aide déclarée au niveau du para
 %Windir%\syswow64\WindowsPowerShell\v1.0\profile.ps1
 %Windir%\syswow64\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
 ```
+
 * Le premier profil s'applique à tous les environnements installés sur la machine pour tous les utilisateurs, y compris les console telle que la console Exchange.
 * Le dernier profil s'applique à l'environnement installé par défaut : 'Microsoft.PowerShell'.
 
@@ -1550,6 +1543,7 @@ notepad $profile
 * Cette commande gère l'affichage et le formatage des flux d'objets.
 * Si le flux d'objets est de type texte, il est redirigé vers Out-Host, dans le cas contraire, Powershell cherchera une vue prédéfinie par rapport au type d'objet retourné.
 * Par exemple, les commandes suivantes renvoient le même résultat :
+
 ```powershell
 Get-ChildItem
 Get-ChildItem | Out-Default
@@ -1591,7 +1585,7 @@ Get-Content .\fichier.txt
 Handles NPM(K) PM(K) WS(K) VM(M) CPU(s) Id   ProcessName
 ------- ------ ----- ----- ----- ------ --   -----------
 526     24     52040 50252 574   0,97   2364 powershell
-``` 
+```
 
 
 ### LIRE DANS UN FICHIER
@@ -1620,26 +1614,14 @@ C:\scripts\CESI> Get-Content .\file.txt -Encoding byte
 ### FICHIER XML
 
 * Un fichier XML est composé de tags pour identifier les informations stockées de manière unique.
-* Exemple de tags :
+  * Exemple de tags : `<Nom>John Smith</Nom>`
+  * Exemple avec un attribut : `<univ nom="Université de Rouen" lieu="MSA">...</univ>`
+  * Un couple de tags désigne un nœud
+  * Exemple complet :
 
-<pre><code class="xml">
-<Nom>John Smith</Name>
-``` 
-
-* Exemple avec un attribut :
-
-<pre><code class="xml">
-<ecole nom="ENSAN" lieu="Rouen">...</ecole>
-```
-
-* Un couple de tags désigne un nœud
-
-
-* Exemple complet :
-
-<pre><code class="xml">
+```xml
 <?xml version="1.0" ?>
-<ecole nom="ENSAN" lieu="Rouen">
+<univ nom="Université de Rouen" lieu="MSA">
     <administratifs>
         <Nom>John Smith</Name>
         <Fonction>Contrôleur Financier</Fonction>
@@ -1658,7 +1640,7 @@ C:\scripts\CESI> Get-Content .\file.txt -Encoding byte
 
 ```powershell
 $xmldata = [xml](Get-Content .\administratifs.xml)
-$xmldata.ecole.administratifs
+$xmldata.univ.administratifs
 
 Nom         Fonction             Tel
 —           ——                   ——
@@ -1669,7 +1651,7 @@ James Bond  Informaticien        0232000010
 * Utilisation du pipeline avec Where-Objet :
 
 ```powershell
-$xmldata.ecole.administratifs | Where-Object {$_.nom -match "James Bond"}
+$xmldata.univ.administratifs | Where-Object {$_.nom -match "James Bond"}
  
 Nom         Fonction      Tel
 —           ——            ——
@@ -1680,11 +1662,11 @@ James Bond  Informaticien 0232000010
 * Modifier une donnée :
 
 ```powershell
-$administratif = $xmldata.ecole.administratifs |
+$administratif = $xmldata.univ.administratifs |
     Where-Object {$_.nom -match "James Bond"}
      
 $administratif.Fonction = "Responsable Informatique"
-$xmldata.ecole.administratifs
+$xmldata.univ.administratifs
  
 Nom        Fonction                 Tel
 —          ——                       ——
@@ -1695,7 +1677,7 @@ James Bond Responsable Informatique 0232000010
 * Utilisation de la méthode SelectNodes() :
 
 ```powershell
-$xmldata.SelectNodes("ecole/administratifs")
+$xmldata.SelectNodes("univ/administratifs")
  
 Nom         Fonction                 Tel
 —           ——                       ——
@@ -1707,7 +1689,7 @@ James Bond  Responsable Informatique 0232000010
 * Sélection du premier enregistrement :
 
 ```powershell
-$xmldata.SelectNodes("ecole/administratifs[1]")
+$xmldata.SelectNodes("univ/administratifs[1]")
  
 Nom         Fonction             Tel
 —           ——                   ——
@@ -1717,7 +1699,7 @@ John Smith  Contrôleur Financier 0232000000
 * Sélection du dernier enregistrement :
 
 ```powershell
-$xmldata.SelectNodes("ecole/administratifs[last()]")
+$xmldata.SelectNodes("univ/administratifs[last()]")
  
 Nom        Fonction                 Tel
 —          ——                       ——
@@ -1764,13 +1746,13 @@ $xmldata = [xml](Get-Content administratifs.xml)
 #Création d'un nœud
 $newadministratif = $xmldata.CreateElement("administratif")
 $newadministratif.set_InnerXML('
-    "<nom>Paul Atréides</nom><fonction>Consultant</fonction>")
+    "<nom>Paul Atréides</nom><fonction>Consultant</fonction>"')
  
 # Ecriture du nœud
-$xmldata.ecole.AppendChild($newadministratif)
+$xmldata.univ.AppendChild($newadministratif)
  
 # Vérification du résultat
-$xmldata.ecole.administratifs
+$xmldata.univ.administratifs
  
 # Affichage flux xml
 $xmldata.get_InnerXml()
@@ -1787,10 +1769,10 @@ $xmldata.get_InnerXml()
 * Les fichiers de scripts 'ps1' sont associés au bloc-note.
 * Par défaut, l'exécution de scripts est désactivée.  
 * PowerShell propose quatre stratégies d'exécution de scripts :
-    * Restricted : Aucun scripts ne peut s'exécuter .
-    * Allsigned : Tous les scripts doivent signés numériquement.
-    * RemotedSigned : Les scripts locaux peuvent être exécuté, les scripts externes doivent être signés.
-    * Unrestricted : Tous les scripts peuvent être exécutés.
+  * Restricted : Aucun scripts ne peut s'exécuter .
+  * Allsigned : Tous les scripts doivent signés numériquement.
+  * RemotedSigned : Les scripts locaux peuvent être exécuté, les scripts externes doivent être signés.
+  * Unrestricted : Tous les scripts peuvent être exécutés.
 
 ```powershell
 .\Get-ConsoleAsText.ps1
