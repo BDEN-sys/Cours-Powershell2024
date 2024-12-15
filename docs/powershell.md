@@ -893,21 +893,21 @@ Un **tableau associatif** n'utilise pas d'indice mais des **clés** utilisées c
 
 * Exemple de tableau associatif :
 
-|Clé	    |Valeur |
-|-----------|-------|
-|Lecteur_DVD	|30 |
-|Lecteur_Dvix	|45 |
-|Lecteur_Bluray	|100|
+|Clé            |Valeur |
+|---------------|-------|
+|Commutateur    |2000   |
+|Routeur        |1000   |
+|Borne Wifi     |800    |
 
 ```powershell
-$lecteurs = @{Lecteur_DVD = 30;Lecteur_Divx = 45;Lecteur_Bluray = 100}
-$lecteurs
+$netItems = @{Commutateur = 2000;Routeur = 1000;'Borne Wifi' = 800}
+$netItems
  
 Name Value
----- -----
-Lecteur_Bluray 100
-Lecteur_DVD 30
-Lecteur_Divx 45
+---- -----                 #Accès via clé : 
+Commutateur 2000           $netItems.'Borne Wifi'
+Routeur   1000             800
+Borne Wifi 800
 ```
 
 
