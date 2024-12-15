@@ -270,7 +270,6 @@ div.multicolumn {
  * Ajout BD 
  *********************************************/
 
-.reveal {
-	/*font-size: 38px;*/
-}	
-
+ pre code.hljs {
+    padding: 0.3em !important;
+ }
