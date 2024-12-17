@@ -507,25 +507,25 @@ Précédemment, nous avons fait usage d'un fournisseur sans s'en apercevoir : Fi
 ```powershell
     Get-ChildItem ENV:
 
-    Name                                Value
-    ----                                -----
-    ALLUSERSPROFILE                     C:\ProgramData
-    APPDATA                             C:\Users\Administrateur\App...
-    CommonProgramFiles                  C:\Program Files\Common Files
-    CommonProgramFiles(x86)             C:\Program Files (x86)\Common...
-    CommonProgramW6432                  C:\Program Files\Common Files
-    ...
-    SystemRoot                          C:\Windows
-    TEMP                                C:\Users\ADMINI~1\AppData...
-    TMP                                 C:\Users\ADMINI~1\AppData...
-    USERDOMAIN                          VM2K8R2
-    USERNAME                            Administrateur
-    USERPROFILE                         C:\Users\Administrateur
-    windir                              C:\Windows
+    Name                      Value
+    ----                      ----
+    ALLUSERSPROFILE           C:\ProgramData
+    APPDATA                   C:\Users\Administrateur\App...
+    CommonProgramFiles        C:\Program Files\Common Files
+    CommonProgramFiles(x86)   C:\Program Files (x86)\Common...
+    CommonProgramW6432        C:\Program Files\Common Files
+    ..    SystemRoot          C:\Windows
+    TEMP                      C:\Users\ADMINI~1\AppData...
+    TMP                       C:\Users\ADMINI~1\AppData...
+    USERDOMAIN                VM2K8R2
+    USERNAME                  Administrateur
+    USERPROFILE               C:\Users\Administrateur
+    windir                    C:\Windows
 ```
 
 
 * Créer une variable d'environnement :
+
 ```powershell
     PS Env:\> New-Item -Name NotreVariable -Value 'PowerShell'
     
@@ -533,16 +533,19 @@ Précédemment, nous avons fait usage d'un fournisseur sans s'en apercevoir : Fi
     ----    -----
     Notre   Variable PowerShell
 ```
+
 * Supprimer une variable d'environnement :
+
 ```powershell
     Env:\> Remove-Item NoteVariable
     #ou
     Remove-Item Env:NoteVariable
 ```
+
 * Récupérer la valeur d'une variable d'environnement :
+
 ```powershell
     Get-Content Env:computername
-
     VM2K8R2
 ```
 
@@ -629,7 +632,7 @@ Modifier le formatage et les propriétés affichés lors de l'exécution d'une c
 * Format-List et caractère générique :
 
 ```powershell
-    Get-ChilItem config.sys | Format-List name, *time
+    Get-ChildItem config.sys | Format-List name, *time
     
     Name : config.sys
     
