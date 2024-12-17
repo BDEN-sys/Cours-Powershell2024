@@ -408,23 +408,24 @@ Depuis l'antique DOS, il était possible d'utiliser cd.. sans espace entre les d
 ## Supprimer des fichiers/dossiers
 
 * Remove-Item (ri, rm, rd, del)
-    * Supprimer tous les fichiers .bak d'un dossier :
+  * Supprimer tous les fichiers .log d'un dossier :
 
     ```powershell
         Remove-Item c:\temp\*.log
     ```
 
-    * Combinaison avec Get-Childitem et récursivité
+  * Combinaison avec Get-Childitem et récursivité
 
     ```powershell
         Get-Childitem c:\temp\* - Include *.log -Recurse | Remove-Item
     ```
 
-    * Supprimer les fichiers systèmes/cachés/lecture seule :
+  * Supprimer les fichiers systèmes/cachés/lecture seule :
 
     ```powershell
         Remove-Item fichieràsupprimer.txt -Force
     ```
+
 > **Attention !**  
 Par défaut, Remove-Item ne demande aucune confirmation. Le paramètre -whatif permet de simuler la commande. Et -confirm demande une confirmation pour chaque suppression de fichier.
 
@@ -432,15 +433,19 @@ Par défaut, Remove-Item ne demande aucune confirmation. Le paramètre -whatif p
 ### DÉPLACER DES FICHIERS/DOSSIERS
 
 * Move-Item (mi, move, mv)
-    * Déplacer tous les fichiers *.Log dans le répertoire logs :
+  * Déplacer tous les fichiers *.Log dans le répertoire logs :
+
     ```powershell
         Move-Item -Path *.log -destination logs
         Move-Item *.log logs
     ```
+
     * Déplacer un répertoire et son contenu :
+
     ```powershell
         Move-Item 'photos vacances' 'mes photos'
     ```
+
     * Renommer un répertoire avec Move-Item ?
 
 
@@ -448,13 +453,16 @@ Par défaut, Remove-Item ne demande aucune confirmation. Le paramètre -whatif p
 
 * Rename-Item (ri, ren)
 
-    * Renommer le fichier scriptV1.ps1 par scriptV2.ps1 :
+  * Renommer le fichier scriptV1.ps1 par scriptV2.ps1 :
+
     ```powershell
         Rename-Item -Path scriptV1.ps1 -Newname scriptV2.ps1
         #ou
         Rename-Item scriptV1.ps1 scriptV2.ps1
     ```
+
     * Renommer le dossier Logs par Logs2010 :
+
     ```powershell
         Rename-Item -Path Logs -Newname Logs 2010
         #ou
@@ -462,16 +470,19 @@ Par défaut, Remove-Item ne demande aucune confirmation. Le paramètre -whatif p
     ```
 
 
-### COPIER DES FICHIERS/DOSSIERS :
+### COPIER DES FICHIERS/DOSSIERS
 
 * Copy-Item (dpi, cp, copy)
-    * Copier un fichier vers un autre répertoire :
+  * Copier un fichier vers un autre répertoire :
+
     ```powershell
         Copy-Item -Path boot.wim -destination d:\RemoteInstall
         #ou
         Copy-Item boot.wim d:\RemoteInstall
     ```
+
     * Copier une arborescence de répertoires et fichiers :
+
     ```powershell
         Copy-Item DossierSource DossierDest -Recurse
     ```
@@ -581,6 +592,7 @@ Modifier le formatage et les propriétés affichés lors de l'exécution d'une c
     d-r-- 29/01/2012 21:49          Users
     d---- 30/01/2012 15:37          Windows
 ```
+
 * Format-List
 
 ```powershell
@@ -599,6 +611,7 @@ Modifier le formatage et les propriétés affichés lors de l'exécution d'une c
 
 
 * Choisir les propriétés à afficher :
+
 ```powershell
     Get-ChildItem C:\ | Format-List -Property Name
     Répertoire : C:\
@@ -607,6 +620,7 @@ Modifier le formatage et les propriétés affichés lors de l'exécution d'une c
 ```
 
 * Autre exemple avec Get-Process
+
 ```powershell
     Get-Process | Format-List -Property id, Name
     Id : 2004
@@ -1485,38 +1499,40 @@ La combinaison de touche !? permet d'obtenir l'aide déclarée au niveau du para
 
 ### LES PROFILS
 
-* Personnaliser son environnement grâce aux profils.
-* Il existe deux types de profils :
+Personnaliser son environnement grâce aux profils. (Par exemple, ajouter des alias, des fonctions, personnaliser le prompt ...)
+
   * Les profils utilisateurs - personnalisent l'environnement de l'utilisateur courant.
+    * **CurrentUserAllHosts** - s'applique à tous les environnements d'un utilisateur, y compris les consoles telle que la console Exchange.
+    * **CurrentUserCurrentHost** - s'applique à l'environnement installé par défaut : 'Microsoft.PowerShell'.
+  
+  
+  
   * Les profils machines - s'appliquent à tous les utilisateurs de la machine.
-
-* Les profils utilisateurs sont au nombre de deux :
-
-```powershell
-%UserProfile%\Mes Documents\WindowsPowerShell\profile.ps1
-%UserProfile%\Mes Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-```
-
-* Le premier profil s'applique à tous les environnements utilisateurs, y compris les consoles telle que la console Exchange.
-* Le dernier profil s'applique à l'environnement installé par défaut : 'Microsoft.PowerShell'.
+    * **AllUsersAllHosts** - s'applique à tous les environnements installés sur la machine pour tous les utilisateurs, y compris les console telle que la console Exchange.
+    * **AllUsersCurrentHost** - s'applique à l'environnement installé par défaut : 'Microsoft.PowerShell'.
 
 
-* Les profils machines sont aussi au nombre de deux :
+* Lister les chemins des profils - **Windows Powershell**  
 
 ```powershell
-%Windir%\system32\WindowsPowerShell\v1.0\profile.ps1
-%Windir%\system32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
+$PROFILE | Select-Object *
+
+AllUsersAllHosts       : C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1
+AllUsersCurrentHost    : C:\Windows\System32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
+CurrentUserAllHosts    : C:\Users\<username>\Documents\WindowsPowerShell\profile.ps1
+CurrentUserCurrentHost : C:\Users\<username>\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1 #ou $profile
 ```
 
-* Pour les machines 64 bits
+* Lister les chemins des profils - **Powershell**
 
 ```powershell
-%Windir%\syswow64\WindowsPowerShell\v1.0\profile.ps1
-%Windir%\syswow64\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
-```
+$PROFILE | Select-Object *
 
-* Le premier profil s'applique à tous les environnements installés sur la machine pour tous les utilisateurs, y compris les console telle que la console Exchange.
-* Le dernier profil s'applique à l'environnement installé par défaut : 'Microsoft.PowerShell'.
+AllUsersAllHosts       : C:\Program Files\PowerShell\7\profile.ps1
+AllUsersCurrentHost    : C:\Program Files\PowerShell\7\Microsoft.PowerShell_profile.ps1
+CurrentUserAllHosts    : C:\Users\deneubap\Documents\PowerShell\profile.ps1
+CurrentUserCurrentHost : C:\Users\deneubap\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 #ou $profile
+```
 
 
 * Ordre d'application des profils :
@@ -1524,27 +1540,50 @@ La combinaison de touche !? permet d'obtenir l'aide déclarée au niveau du para
 ```powershell
 %Windir%\system32\WindowsPowerShell\v1.0\profile.ps1
 %Windir%\system32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1
-%UserProfile%\Mes Documents\WindowsPowerShell\profile.ps1
-%UserProfile%\Mes Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+%UserProfile%\<username>\WindowsPowerShell\profile.ps1
+%UserProfile%\<username>\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 ```
 
 * Modifier un profil : la variable $profil contient le chemin du profil utilisateur.
 
 ```powershell
 $profile
-C:\Users\Administrateur\Documents\WindowsPowerShell\
-    `Microsoft.PowerShell_profile.ps1
-Créer le profil :
+C:\Users\<username>\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+#Créer le profil :
 New-Item -Path $profile -ItemType file -Force
-notepad $profile
+ise $profile ou #code $profile, si vscode est installé
 ```
 
 
-#### PERSONNALISATION DU FORMATAGE DE L'AFFICHAGE
+#### Usages des profils 
 
-* Par défaut le retour d'une cmdlet est dirigé vers la commande Out-Default.
+* Personnalisation du prompt :
+
+```powershell
+function Prompt {
+    $env:COMPUTERNAME + "\" + (Get-Location) + "> "
+}
+```
+
+* Personnalisation du titre de la console :
+
+```powershell
+
+function CustomizeConsole {
+  $hosttime = (Get-ChildItem -Path $PSHOME\pwsh.exe).CreationTime
+  $hostversion="$($Host.Version.Major)`.$($Host.Version.Minor)"
+  $Host.UI.RawUI.WindowTitle = "PowerShell $hostversion ($hosttime)"
+  Clear-Host
+}
+CustomizeConsole
+```
+
+
+### PERSONNALISATION DU FORMATAGE DE L'AFFICHAGE
+
+* Par défaut le retour d'une cmdlet est dirigé vers la commande **Out-Default**.
 * Cette commande gère l'affichage et le formatage des flux d'objets.
-* Si le flux d'objets est de type texte, il est redirigé vers Out-Host, dans le cas contraire, Powershell cherchera une vue prédéfinie par rapport au type d'objet retourné.
+* Si le flux d'objets est de type texte, il est redirigé vers **Out-Host**, dans le cas contraire, Powershell cherchera une vue prédéfinie par rapport au type d'objet retourné.
 * Par exemple, les commandes suivantes renvoient le même résultat :
 
 ```powershell
@@ -1713,29 +1752,29 @@ James Bond Responsable Informatique 0232000010
 * Lister le ou les attributs d'un tag :
 
 ```powershell
-$xmldata.ecole.Get_Attributes()
+$xmldata.univ.Get_Attributes()
  
 #Text
 —–
-ENSAN
-Rouen
+Université de Rouen
+Mont Saint Aignan
 ```
 
 * Lire un attribut :
 
 ```powershell
-$xmldata.ecole.GetAttribute("lieu")
+$xmldata.univ.GetAttribute("lieu")
  
-Rouen
+Mont Saint Aignan
 ```
 
 * Créer ou modifier un attribut :
 
 ```powershell
-$xmldata.ecole.SetAttribute("lieu","Darnétal")
-$xmldata.ecole.GetAttribute("lieu")
+$xmldata.univ.SetAttribute("lieu","MSA")
+$xmldata.univ.GetAttribute("lieu")
  
-Darnétal
+MSA
 ```
 
 
@@ -1817,47 +1856,137 @@ Set-ExecutionPolicy RemoteSigned
 * WMI (Windows Management Instrumentation) est née à l'initiative du groupe DMTF (Distributed Management Task Force)
 * La norme CIM (Common Information Model) est issue de ce groupe.
 * CIM est un schéma orienté objet permettant la gestion système, réseaux, applications, BDD et périphériques.
-* Néanmoins c'est Windows qui intégre le plus cette norme avec WMI.
+
+> Les applets de commande WMI sont déconseillées et ne sont pas disponibles avec PowerShell 7
+
 * Pour plus d'informations sur WMI :
-
-http://laurent-dardenne.developpez.com/articles/wmi-p1/
-http://dotnet.developpez.com/articles/wmi1/100/1
-
-
-### EXEMPLES
-
-* Exemple d'une commande WMI avec Powershell
+  * <https://learn.microsoft.com/fr-fr/powershell/scripting/learn/ps101/07-working-with-wmi?view=powershell-7.4>
 
 ```powershell
-get-wmiobject win32_operatingsystem | select InstallDate, Caption
+#Obtenir toutes les commandes CIM
+Get-Command -Module CimCmdlets
+```
+
+
+### EXEMPLES CIM
+
+* Exemple d'une commande CIM avec Powershell
+
+```powershell
+Get-CimInstance win32_operatingsystem |  select InstallDate, Caption, Version
  
-InstallDate               Caption
------------               -------
-20120129214801.000000+060 Microsoft Windows Server 2008 R2 Standard
+InstallDate         Caption            Version
+-----------         -------            -------
+04/11/2024 23:32:16 MS Windows 11 Pro  10.0.26100
 ```
 
 > **Espace de nom par défaut**
 A noter, que par défaut, la commande Get-WmiObject porte sur l'espace de nom root\cimv2
 
 
-* Autres exemples :
+* Informations concernant le BIOS
 
 ```powershell
-get-wmiobject win32_bios -computername W2K8R2
+Get-CimInstance -ClassName Win32_BIOS
  
-SMBIOSBIOSVersion : 6.00
-Manufacturer : Phoenix Technologies LTD
-Name : PhoenixBIOS 4.0 Release 6.0
-SerialNumber : VMware-56 4d da 0d 44 23 ac cd-dd ca d2 Version : INTEL - 6040000
+SMBIOSBIOSVersion : V75 Ver. 01.05.05
+Manufacturer      : HP
+Name              : V75 Ver. 01.05.05
+SerialNumber      : 5xxxxxxxx
+Version           : HPQOEM - 0
+```
+
+* Informations concernant le domain AD
+
+```powershell
+
+Get-CimInstance -ClassName Win32_NTDomain | Format-List *
  
-get-wmiobject win32_ntdomain
+Status                   : OK
+DomainName               : CESI
+DomainGuid               : {ABC80576-84F9-47DC-BA66-A45D264085B1}
+Caption                  : CESI
+Description              : CESI
+Name                     : Domain: CESI
+CreationClassName        : Win32_NTDomain
+ClientSiteName           : Default-First-Site-Name
+DcSiteName               : Default-First-Site-Name
+DnsForestName            : cesi.lan
+DomainControllerAddress  : \\192.168.10.12
+DomainControllerAddress..: 1
+DomainControllerName      : \\DC1
+DSDirectoryServiceFlag    : True
+DSDnsControllerFlag       : False
+DSDnsDomainFlag           : False
+DSDnsForestFlag           : True
+DSGlobalCatalogFlag       : True
+DSKerberosDistri..        : True
+DSPrimaryDomainC..        : True
+DSTimeServiceFlag         : True
+DSWritableFlag            : True
+CimClass                  : root/cimv2 : Win32_NTDomain
+CimInstanceProperties     : {Caption, Description, InstallDate, Name...}
+CimSystemProperties       : Microsoft.Management.Infrastructure.CimSystemProperties
+```
+
+
+* Utilisation de CIM à distance 
+
+```powershell
+$CimSession = New-CimSession -ComputerName <computername> -Credential (Get-Credential)
+
+PowerShell credential request
+Enter your credentials.
+User: DOMAIN\username
+Password for user DOMAINE\username: **********
+
+Get-CimInstance -CimSession $CimSession -ClassName  Win32_Volume | 
+    select id,name,capacity,freespace, filesystem, drivetype | Format-table
+
+name                    capacity     freespace    filesystem drivetype
+----                    --------     ---------    ---------- ---------
+C:\                     169423663104 103679107072 NTFS               3
+\\?\Volume{fde1993c-...   1715466240   1160085504 NTFS               3
+\\?\Volume{c8efc7f1-...    519045120    488177664 FAT32              3
+
+#Fermeture de session CIM
+Get-CimSession | Remove-CimSession
+
+```
+
+> Get-CimInstance utilise le protocole **WSMan** par défaut, l'ordinateur distant nécessite la pile WSMAN V3 ou ultérieure (installée avec Powershel V3 ou ultérieur)
  
-ClientSiteName : Default-First-Site-Name
-DcSiteName : Default-First-Site-Name
-Description : DOM
-DnsForestName : dom.local
-DomainControllerAddress : \\192.168.97.160
-DomainControllerName : \\VM2K8R2
-DomainName : DOM
-Status : OK
+* Test WSMAN
+
+```powershell
+Test-WSMan -ComputerName <computername>
+wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
+ProtocolVersion : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
+ProductVendor   : Microsoft Corporation
+ProductVersion  : OS: 0.0.0 SP: 0.0 Stack: 3.0
+```
+
+
+* Interrogation distante de plusieurs ordinateurs
+
+```powershell
+$credentials = Get-Credential
+
+PowerShell credential request
+Enter your credentials.
+User: DOMAIN\username
+Password for user DOMAINE\username: **********
+
+$computers = 'computer1','computer2','computer3'
+$CimSession = New-CimSession -ComputerName $computers -Credential $credentials
+Get-CimInstance -CimSession $CimSession -ClassName  Win32_Volume | 
+     select systemname,name,capacity,freespace, filesystem, drivetype | Format-table
+
+systemname   name     capacity    freespace filesystem drivetype
+----------   ----     --------    --------- ---------- ---------
+COMPUTER1    C:\  169423663104 103651979264 NTFS              3
+COMPUTER2    C:\  95976157184  45933240320 NTFS               3
+COMPUTER3    C:\  63124271104  27929890816 NTFS               3
+COMPUTER3    D:\  21455958016  14664257536 NTFS               3
+
 ```
