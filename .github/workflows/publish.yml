@@ -1,49 +1,31 @@
-# SPDX-FileCopyrightText: Copyright (C) 2024 Martijn Saelens and Contributors to the project (https://github.com/MartenBE/mkslides/graphs/contributors)
-#
-# SPDX-License-Identifier: MIT
-
-name: CI/CD
 on:
   push:
     branches:
       - master
-    tags:
-      - "[0-9]*"
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: write
-  discussions: write
-  id-token: write
+  contents: read
   pages: write
+  id-token: write
 
 jobs:
   deploy:
-    if: github.ref_type == 'branch' && github.event_name == 'push' # Ensure deploy only runs on push to a branch, not pull_request or tag
-    #needs: test
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-        with:
-          submodules: true
+      - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
-      - run: pip install uv
-      - run: uv sync
-      - run: uv run mkslides build
-      - uses: actions/upload-pages-artifact@v4
+          python-version: '3.12'
+      - run: pip install mkslides
+      - run: mkslides build docs/
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
       - id: deployment
