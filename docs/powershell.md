@@ -31,6 +31,7 @@ Le projet Monad puis PowerShell v1 arrive en 2006.
 * En 2018, sortie de PowerShell Core 6.0 (Linux et OSX)
 * En 2020, sortie de PowerShell 7 (version LTS)
 * Fin 2023, dernière version LTS - Powershell V7.4
+* En 2025, sortie de Powershell v7.5
 
 
 
