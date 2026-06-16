@@ -1092,7 +1092,7 @@ True
 
 |Notation  classique|Notation raccourcie|
 |---------  |---------------------------|
-|$i=$i+8    |$i+=8|
+|\$i=$i+8    |$i+=8|
 |$i=$i-8	|$i-=8|
 |$i=$i*8	|$i*=8|
 |$i=$i/8	|$i/=8|
